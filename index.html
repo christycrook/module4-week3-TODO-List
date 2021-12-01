@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping List</title>
+</head>
+<body>
+  <!-- HTML goes here -->
+  <h1>Things to Buy</h1>
+
+  <ul id="shoppingList">
+    <li>Waffles</li>
+    <li>Pancakes</li>
+    <li>Bacon</li>
+    <li>Eggs</li>
+  </ul>
+
+  <form id="newItemForm">
+    <label for="item">Add New Item</label>
+    <br>
+    <input type="text" name="item" id="item">
+    <button type="submit" id="addButton">Add</button>
+  </form>
+
+  <script>
+    // JavaScript goes here
+    const form = document.getElementById('newItemForm')
+    const list = document.getElementById('shoppingList')
+    const input = document.getElementById('item')
+
+    form.addEventListener('submit', function(event){
+      event.preventDefault();
+
+      const newItem = document.createElement('li')
+      newItem.innerText = item.value;
+      list.append(newItem);
+      // form.reset();
+    })
+  </script>
+</body>
+</html>
