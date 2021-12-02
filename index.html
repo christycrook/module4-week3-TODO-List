@@ -4,39 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping List</title>
+  <link rel="styelsheet" href="style.css">
 </head>
 <body>
-  <!-- HTML goes here -->
-  <h1>Things to Buy</h1>
+  <div class="container">
+    <p>Enter Task
+      <label for="new-task"></label>
+      <input id="new-task" type="text" placeholder="Complete this assignment"><button>Add</button>
+    </p>
 
-  <ul id="shoppingList">
-    <li>Waffles</li>
-    <li>Pancakes</li>
-    <li>Bacon</li>
-    <li>Eggs</li>
-  </ul>
+    <h3>Pending Tasks</h3>
+    <ul id="incomplete-tasks"><input type="checkbox"><label></label><button class="remove"></button>
+    </ul>
 
-  <form id="newItemForm">
-    <label for="item">Add New Item</label>
-    <br>
-    <input type="text" name="item" id="item">
-    <button type="submit" id="addButton">Add</button>
-  </form>
+    <h3>Completed Tasks</h3>
+    <ul id="completed-tasks"><input type="checkbox"><label></label><button class="remove"></button>
+    </ul>
+  </div>
 
-  <script>
-    // JavaScript goes here
-    const form = document.getElementById('newItemForm')
-    const list = document.getElementById('shoppingList')
-    const input = document.getElementById('item')
-
-    form.addEventListener('submit', function(event){
-      event.preventDefault();
-
-      const newItem = document.createElement('li')
-      newItem.innerText = item.value;
-      list.append(newItem);
-      // form.reset();
-    })
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
