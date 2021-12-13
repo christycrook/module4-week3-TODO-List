@@ -3,25 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping List</title>
+  <title>TODO List</title>
   <link rel="styelsheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <p>Enter Task
-      <label for="new-task"></label>
-      <input id="new-task" type="text" placeholder="Complete this assignment"><button>Add</button>
-    </p>
-
-    <h3>Pending Tasks</h3>
-    <ul id="incomplete-tasks"><input type="checkbox"><label></label><button class="remove"></button>
-    </ul>
-
-    <h3>Completed Tasks</h3>
-    <ul id="completed-tasks"><input type="checkbox"><label></label><button class="remove"></button>
-    </ul>
+    <div class="row">
+      <div class="col-md-12" id="new-task-section">
+        <h1>Enter Task</h1>
+        <form>
+          <label for="new-task"></label>
+          <input id="new-task" type="text" placeholder="Complete this assignment">
+          <button id="add-btn">Add</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" id="pending-section">
+        <h2>Pending Tasks</h2>
+        <input type="checkbox">
+        <ul id="pending-tasks">
+        </ul>
+        <button class="remove"></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" id="completed-section">
+        <h2>Completed Tasks</h2>
+        <input type="checkbox">
+        <ul id="completed-tasks">
+        </ul>
+        <button class="remove"></button>
+      </div>
+    </div>
   </div>
-
   <script src="scripts.js"></script>
 </body>
 </html>
