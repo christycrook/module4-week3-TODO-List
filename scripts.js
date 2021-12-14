@@ -1,95 +1,53 @@
-let taskInput=document.getElementById("new-task");//Add a new task.
-let addButton=document.getElementsByTagName("button")[0];//first button
-let incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
-let completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
+let taskInput = document.querySelector("new-task");
+let addButton = document.querySelector("#add-button");
+let pendingTaskHolder = document.getElementById("pending-tasks");
+let completedTasksHolder = document.getElementById("completed-tasks");
 
-let createNewTaskElement=function(taskString){
+// move task from input to pending section
+function addTask(event) {
+	event.preventDefault();
 
-	let listItem=document.createElement("li");
+	let input = document.getElementById("new-task").value;
+	let newTaskInput = document.createElement("new-input");
+	newTaskInput.className = "col-md-12 pending-section";
+	newTaskInput.innerHTML = input;
+	let completeButton = document.createElement("button");
+	completeButton.className = "col-md-12";
+	let deleteButton = document.createElement("button");
+	deleteButton.textContent = "Remove";
+	deleteButton.className = "col-md-12";
+	pendingTaskHolder.appendChild(completeButton);
+	pendingTaskHolder.appendChild(newTaskInput);
+	pendingTaskHolder.appendChild(deleteButton);
+};
 
-	//input (checkbox)
-	let checkBox=document.createElement("input");//checkbx
-	//label
-	let label=document.createElement("label");//label
-	//input (text)
-	let editInput=document.createElement("input");//text
-	
+addButton.addEventListener("click", addTask);
+completeButton.addEventListener("click", moveTask);
+deleteButton.addEventListener("click", deleteTask);
 
-	//button.delete
-	let deleteButton=document.createElement("button");//delete button
+// delete task from pending list if no longer needed
+function deleteTask() {
+	pendingTaskHolder.removeChild(completeButton);
+	pendingTaskHolder.removeChild(newTaskInput);
+	pendingTaskHolder.removeChild(deleteButton);
+};
 
-	label.innerText=taskString;
+/*completeButton.addEventListener("click", moveTask);
+deleteButton.addEventListener("click", deleteTask);*/
 
-	//Each elements, needs appending
-	checkBox.type="checkbox";
-    deleteButton.type="button";
-	deleteButton.innerText="delete";
-	deleteButton.className="delete";
+function moveTask() {
+	let newTaskInputClone = newTaskInput.cloneNode(true);
+	newTaskInputClone.className = "col-md-12 pending-section";
+	let completeButtonClone = completeButton.cloneNode(true);
+	completeButtonClone.className = "col-md-12";
+	let deleteButtonClone = deleteButton.cloneNode(true);
+	deleteButtonClone.className = "col-md-12";
+	completedTasksHolder.appendChild(completeButtonClone);
+	completedTasksHolder.appendChild(newTaskInputClone);
+	completedTasksHolder.appendChild(deleteButtonClone);
+	pendingTaskHolder.removeChild(completeButton);
+	pendingTaskHolder.removeChild(newTaskInput);
+	pendingTaskHolder.removeChild(deleteButton);
+};
 
-
-
-	//and appending.
-	listItem.appendChild(checkBox);
-	listItem.appendChild(label);
-	listItem.appendChild(deleteButton);
-	return listItem;
-}
-
-
-
-let addTask=function(){
-	console.log("Add Task...");
-	//Create a new list item with the text from the #new-task:
-	let listItem=createNewTaskElement(taskInput.value);
-
-	//Append listItem to incompleteTaskHolder
-	incompleteTaskHolder.appendChild(listItem);
-	bindTaskEvents(listItem, taskCompleted);
-
-	taskInput.value="";
-
-}
-
-//Delete task.
-let deleteTask=function(){
-	console.log("Delete Task...");
-
-	let listItem=this.parentNode;
-	let ul=listItem.parentNode;
-    //Remove the parent list item from the ul.
-	ul.removeChild(listItem);
-
-}
-
-
-//Mark task completed
-let taskCompleted=function(){
-		console.log("Complete Task...");
-	
-	//Append the task list item to the #completed-tasks
-	let listItem=this.parentNode;
-	completedTasksHolder.appendChild(listItem);
-				bindTaskEvents(listItem, taskIncomplete);
-
-}
-
-
-let taskIncomplete=function(){
-		console.log("Incomplete Task...");
-//Mark task as incomplete.
-	//When the checkbox is unchecked
-		//Append the task list item to the #incomplete-tasks.
-		let listItem=this.parentNode;
-	incompleteTaskHolder.appendChild(listItem);
-			bindTaskEvents(listItem,taskCompleted);
-}
-
-
-
-//Set the click handler to the addTask function.
-addButton.onclick=addTask;
-addButton.addEventListener("click",addTask);
-
-
-
-
+deleteButtonClone.addEventListener("click", deleteTaskClone);
