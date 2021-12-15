@@ -4,50 +4,50 @@ let pendingTaskHolder = document.getElementById("pending-tasks");
 let completedTasksHolder = document.getElementById("completed-tasks");
 
 // move task from input to pending section
-function addTask(event) {
+const addTask = (event) => {
 	event.preventDefault();
 
 	let input = document.getElementById("new-task").value;
 	let newTaskInput = document.createElement("new-input");
 	newTaskInput.className = "col-md-12 pending-section";
 	newTaskInput.innerHTML = input;
-	let completeButton = document.createElement("button");
-	completeButton.className = "col-md-12";
+	let completedButton = document.createElement("button");
+	completedButton.className = "col-md-12";
 	let deleteButton = document.createElement("button");
-	deleteButton.textContent = "Remove";
+	deleteButton.textContent = "Delete";
 	deleteButton.className = "col-md-12";
-	pendingTaskHolder.appendChild(completeButton);
+	pendingTaskHolder.appendChild(completedButton);
 	pendingTaskHolder.appendChild(newTaskInput);
 	pendingTaskHolder.appendChild(deleteButton);
+	
+	// delete task from pending section if no longer needed
+	const deleteTask = () => {
+		pendingTaskHolder.removeChild(completedButton);
+		pendingTaskHolder.removeChild(newTaskInput);
+		pendingTaskHolder.removeChild(deleteButton);
+	};
+
+	deleteButton.addEventListener("click", deleteTask);
 };
 
 addButton.addEventListener("click", addTask);
-completeButton.addEventListener("click", moveTask);
-deleteButton.addEventListener("click", deleteTask);
 
-// delete task from pending list if no longer needed
-function deleteTask() {
-	pendingTaskHolder.removeChild(completeButton);
-	pendingTaskHolder.removeChild(newTaskInput);
-	pendingTaskHolder.removeChild(deleteButton);
-};
-
-/*completeButton.addEventListener("click", moveTask);
-deleteButton.addEventListener("click", deleteTask);*/
-
-function moveTask() {
-	let newTaskInputClone = newTaskInput.cloneNode(true);
-	newTaskInputClone.className = "col-md-12 pending-section";
-	let completeButtonClone = completeButton.cloneNode(true);
-	completeButtonClone.className = "col-md-12";
-	let deleteButtonClone = deleteButton.cloneNode(true);
-	deleteButtonClone.className = "col-md-12";
-	completedTasksHolder.appendChild(completeButtonClone);
-	completedTasksHolder.appendChild(newTaskInputClone);
+// move task from pending section to completed section
+const moveTask = () => {
+	console.log("hello");
+    let completedButtonClone = completedButton.cloneNode(true);
+    completedButtonClone.className = "col-4 check-mark-clone complete-section";
+    let taskInputClone = taskInput.cloneNode(true);
+    taskInputClone.className = "col-4 new-input-clone complete-section";
+    let deleteButtonClone = deleteButton.cloneNode(true);
+    deleteButtonClone.className =
+     "col-4 delete-button-clone complete-section"
+	completedTasksHolder.appendChild(completedButtonClone);
+	completedTasksHolder.appendChild(taskInputClone);
 	completedTasksHolder.appendChild(deleteButtonClone);
-	pendingTaskHolder.removeChild(completeButton);
-	pendingTaskHolder.removeChild(newTaskInput);
+	pendingTaskHolder.removeChild(completedButton);
+	pendingTaskHolder.removeChild(taskInput);
 	pendingTaskHolder.removeChild(deleteButton);
 };
 
-deleteButtonClone.addEventListener("click", deleteTaskClone);
+completedButton.addEventListener("click", moveTask);
