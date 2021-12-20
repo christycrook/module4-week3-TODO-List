@@ -8,28 +8,19 @@
 </head>
 <body>
   <div class="container">
-    <div class="row">
-      <div class="col-md-12" id="new-task-section">
+    <div class="nav">
+      <div id="new-task-section">
         <h1>Enter Task</h1>
-        <form>
-          <label for="new-task"></label>
-          <input id="new-task" type="text" placeholder="Complete this assignment">
+        <div>
+          <input id="new-task" type="text" placeholder="Enter Task">
           <button id="add-button">Add</button>
-        </form>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12" id="pending-section">
-        <h2>Pending Tasks</h2>
-        <ul id="pending-tasks">
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12" id="completed-section">
-        <h2>Completed Tasks</h2>
-        <ul id="completed-tasks">
-        </ul>
+    <div class="nav">
+      <div id="pending-section">
+        <h2>Tasks To Do</h2>
+        <div id="pending-tasks"></div>
       </div>
     </div>
   </div>

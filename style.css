@@ -1,68 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: lightgrey;
+}
 .container {
-  margin-top: 15px;
+  display: grid;
   text-align: center;
 }
 
+.nav {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 h1 {
-  font-size: 14px;
-  display: inline;
+  font-size: 25px;
   color: darkolivegreen;
 }
 
 h2 {
-  font-size: 16px;
+  font-size: 22px;
   padding-top: 10px;
   text-align: center;
   color: tan;
 }
 
-p {
-  text-align: center;
-  font-size: 14px;
-  padding: 5px;
-}
-
-form {
+li {
   display: inline;
-  padding: 10px;
 }
 
-ul {
-  list-style: none;
-}
-
-ul li {
-  margin-left: 5px;
-  font-size: 24px;
-  text-align: left;
-  background-color: thistle;
-  margin: 10px;
-  height: 50px;
-  color: blanchedalmond;
-  position: relative;
+div {
+  font-size: 22px;
+  color: tan;
 }
 
 #pending-tasks {
-  margin-top: 15px;
+  text-align: center;
 }
 
 #new-task {
+  margin-left: 20px;
   text-align: left;
 }
 
 #add-button {
   color: darkred;
-  background-color: lightgray;
   border-style: hidden;
 }
 
 #new-task-input {
-  width: 275px;
+  width: 300px;
+  text-align: center;
 }
 
-.remove {
-  position: absolute;
-  top: 15px;
-  right: 10px;
+#completed-button {
+  margin-right: 15px;
+}
+
+.button {
   font-size: 10px;
+  background-color: transparent;
 }

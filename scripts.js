@@ -4,22 +4,30 @@ let pendingTaskHolder = document.getElementById("pending-tasks");
 let completedTasksHolder = document.getElementById("completed-tasks");
 
 // move task from input to pending section
-const addTask = (event) => {
+function addTask(event) {
 	event.preventDefault();
 
 	let input = document.getElementById("new-task").value;
-	let newTaskInput = document.createElement("new-input");
+	let newTaskInput = document.createElement("taskInput");
+	let completedButton = document.createElement("button");
+	let deleteButton = document.createElement("button");
+	
 	newTaskInput.className = "col-md-12 pending-section";
 	newTaskInput.innerHTML = input;
-	let completedButton = document.createElement("button");
-	completedButton.className = "col-md-12";
-	let deleteButton = document.createElement("button");
+	
+	completedButton.className = "completed-button";
+	completedButton.textContent = "❏";
+	completedButton.addEventListener("click", function() {
+		completedButton.style.color = "red"
+	})
+	
 	deleteButton.textContent = "Delete";
-	deleteButton.className = "col-md-12";
+	deleteButton.className = "delete-button";
+	
 	pendingTaskHolder.appendChild(completedButton);
 	pendingTaskHolder.appendChild(newTaskInput);
 	pendingTaskHolder.appendChild(deleteButton);
-	
+
 	// delete task from pending section if no longer needed
 	const deleteTask = () => {
 		pendingTaskHolder.removeChild(completedButton);
@@ -30,24 +38,5 @@ const addTask = (event) => {
 	deleteButton.addEventListener("click", deleteTask);
 };
 
-addButton.addEventListener("click", addTask);
+addButton.addEventListener("click", addTask)
 
-// move task from pending section to completed section
-const moveTask = () => {
-	console.log("hello");
-    let completedButtonClone = completedButton.cloneNode(true);
-    completedButtonClone.className = "col-4 check-mark-clone complete-section";
-    let taskInputClone = taskInput.cloneNode(true);
-    taskInputClone.className = "col-4 new-input-clone complete-section";
-    let deleteButtonClone = deleteButton.cloneNode(true);
-    deleteButtonClone.className =
-     "col-4 delete-button-clone complete-section"
-	completedTasksHolder.appendChild(completedButtonClone);
-	completedTasksHolder.appendChild(taskInputClone);
-	completedTasksHolder.appendChild(deleteButtonClone);
-	pendingTaskHolder.removeChild(completedButton);
-	pendingTaskHolder.removeChild(taskInput);
-	pendingTaskHolder.removeChild(deleteButton);
-};
-
-completedButton.addEventListener("click", moveTask);
