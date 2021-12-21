@@ -8,7 +8,7 @@ function addTask(event) {
 	event.preventDefault();
 
 	let input = document.getElementById("new-task").value;
-	let newTaskInput = document.createElement("taskInput");
+	let newTaskInput = document.createElement("li");
 	let completedButton = document.createElement("button");
 	let deleteButton = document.createElement("button");
 	
